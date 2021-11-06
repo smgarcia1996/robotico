@@ -8,6 +8,7 @@ def linmap(value, min_origin, max_origin, min_destination, max_destination):
 def clamp(value, low=0, high=1):
     return max(min(value, low), high)
 
+
 def between(value, low=0, high=1):
     return value >= low and value <= high
 
@@ -24,9 +25,17 @@ def clampAngle(value):
     return value
 
 
-def getMedian(self, measures):
+def getMedian(measures):
     measures = sorted(measures)
     return measures[math.floor(len(measures) / 2)]
+
+
+def getMean(measures):
+    return sum(measures) / len(measures)
+
+
+def getMax(measures):
+    return max(measures)
 
 
 def getMedianMeasure(function, samples: int):
