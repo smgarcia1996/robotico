@@ -1,27 +1,21 @@
-# import smbus
-
-
+import smbus
 from typing import List
-from auxmodule.AuxFunctions import getMean, getMedian, linmap
-
-# from .. import auxmodule
+from auxmodule.AuxFunctions import getMean, getMedian
 
 
 class ADS7830:
 
     def __init__(self):
-        # self.bus = smbus.SMBus(1)
+        self.bus = smbus.SMBus(1)
         self.ADS7830_DEFAULT_ADDRESS = 0x48
         self.ADS7830_CMD = 0x84
 
     def readADC(self, channel):
         cmd = self.ADS7830_CMD | (
             (((channel << 2) | (channel >> 1)) & 0x07) << 4)
-        # self.bus.write_bye(self.ADS7830_DEFAULT_ADDRESS, cmd)
-        # data=self.bus.read_byte(self.ADS7830_DEFAULT_ADDRESS)
-        # return data
-        # print(cmd)
-        return 1
+        self.bus.write_bye(self.ADS7830_DEFAULT_ADDRESS, cmd)
+        data = self.bus.read_byte(self.ADS7830_DEFAULT_ADDRESS)
+        return data
 
 
 class BatteryLevel:
